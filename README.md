@@ -25,6 +25,7 @@ Here's a general diagram of how it works:
 You'll want to keep note of the following values:
 * S3 bucket and key for the OpsWorks artifact zip file
 * OpsWorks Stack ID
+* OpsWorks Stack ARN
 * OpsWorks App ID
 * SNS ARN
 * SNS Event Subscription ARN
