@@ -36,17 +36,17 @@ Here's a general diagram of how it works:
 * Manually create a pipeline in [CodePipeline](https://console.aws.amazon.com/codepipeline/)by using the steps/video shown at: [Create a Pipeline using the AWS CodePipeline Console](http://www.stelligent.com/cloud/create-a-pipeline-using-the-aws-codepipeline-console/)
 * Create and save a script that defines a custom CodePipeline action (use codepipeline-customer-action-input.json): `sudo vim codepipeline-customer-action-input.json`
 * Apply the custom action: `aws codepipeline create-custom-action-type --cli-input-json file://codepipeline-customer-action-input.json`
-* In [CodePipeline](https://console.aws.amazon.com/codepipeline/), add a new stage called `OpsWorks` (you can name it anything you’d like) and action in between the Source and Beta stages. When configuring the action, use the **Deploy** category and select the name of the custom action you just created fro the Deployment Provider drop down. Enter the three values for the parameters of the action. 
+* In [CodePipeline](https://console.aws.amazon.com/codepipeline/), add a new stage called `OpsWorks` (you can name it anything you’d like) and action in between the Source and Beta stages. When configuring the action, use the **Deploy** category and select the name of the custom action you just created fro the **Deployment Provider** drop down. Enter the three values for the parameters of the action. 
 * From your EC2 instance, change the directory: `cd ~/codepipeline-opsworks-deployer`
 * Install npm: `sudo npm install`
 * Install the Grunt CLI: `sudo npm install -g grunt-cli`
 * Update your local version of [lib/handle_job.js](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/lib/handle_job.js) with the name of the Deploy Provider (i.e. the name of the custom action you created)
 * Update your local versions of  [event_handle.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_handle.json) and [event_monitor.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_monitor.json) with clean message and ARNs that match the SNS Topic and Event Subscription you created
 * Update the Grunt build file: `sudo vim Gruntfile.js`
-* Update the arn for the Lambda function in `lambda_deploy` and save the file.
+* Update the `arn` for the Lambda function in `lambda_deploy` and save the file.
 * Upload Lambda function using Grunt by calling `grunt deploy` from the command line on the EC2 instance.
-* Update the Event sources tab of the Lambda function and update the SNS source state to Enabled.
-* Click Release change button on CodePipeline
+* From the **Event Sources** tab of the [Lambda](https://console.aws.amazon.com/lambda/) function, update the SNS source state to Enabled.
+* Click **Release change** button on [CodePipeline](https://console.aws.amazon.com/codepipeline/)
 * Copy the generated file from your EC2 instance to S3 bucket. Replace `generated-file-name.zip` and `my-bucket` with the actual names.
 `aws s3 cp /home/ec2-user/codepipeline-opsworks-deployer/dist/generated-file-name.zip s3://my-bucket/ --storage-class REDUCED_REDUNDANCY`
 
