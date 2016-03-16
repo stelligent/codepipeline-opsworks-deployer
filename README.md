@@ -22,6 +22,17 @@ Here's a general diagram of how it works:
 
 **NOTE: These steps will be automated later. This README is currently under construction.**
 
+You'll want to keep note of the following values:
+* S3 bucket and key for the OpsWorks artifact zip file
+* OpsWorks Stack ID
+* OpsWorks App ID
+* SNS ARN
+* SNS Event Subscription ARN
+* Deploy Provider Name - the custom action name that you create for CodePipeline
+* Lambda Function ARN
+
+### Steps
+
 * Launch an EC2 instance using Amazon Linux or run from your local environment. The remainder of the instructions assume EC2, so adjust the commands as necessary.
 * After SSHing into the EC2 instance, install Git: `sudo yum -y install git*`
 * Clone this Git repo: `git clone https://github.com/stelligent/codepipeline-opsworks-deployer`
