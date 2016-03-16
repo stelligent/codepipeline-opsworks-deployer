@@ -41,8 +41,9 @@ You'll want to keep note of the following values:
 * Clone this Git repo: `git clone https://github.com/stelligent/codepipeline-opsworks-deployer`
 * Create an OpsWorks Artifact Bucket in [S3](https://console.aws.amazon.com/s3/) and upload the zip file from https://github.com/awslabs/aws-codepipeline-s3-aws-codedeploy_linux/tree/master/dist. Be sure to enable versioning on the bucket for CodePipeline by right clicking on **Properties** for the bucket, select **Versioning** and click the **Enable Versioning** button.
 * Manually create an [OpsWorks](https://console.aws.amazon.com/opsworks/) stack using  w/ Chef 11.10. When creating an OpsWorks layer, use the **Static Web Server** Layer type. Use the **S3 Archive** repository type when creating the App in OpsWorks. Configure your OpsWorks stack with CodePipeline/CodeDeploy zip file deployed (from the above step). Once it's successfully deployed, make note of the *OpsWorks Stack ID* and *OpsWorks App ID*.
-* Create an [SNS](https://console.aws.amazon.com/sns/) Topic. Edit Topic Delivery Policy|Advanced View, use the source from: `opsworks-sns-topic-delivery-policy.json` (Update the variables). Make note of the *SNS ARN* and the *SNS Event Subscription ARN*.
-* From the SNS Actions button, select **Edit Topic Policy** with `opsworks-sns-topic-policy.json` (Update the variables)
+* Create an [SNS](https://console.aws.amazon.com/sns/) Topic. 
+* Select the newly-created SNS topic and click on the **Other topic actions** button, select **Edit topic Policy** with `opsworks-sns-topic-policy.json` (Update the variables)
+* Then, select **Edit topic delivery policy**. After this, click on the **Advanced View** tab and use the source from: `opsworks-sns-topic-delivery-policy.json` (Update the variables). Make note of the *SNS ARN* and the *SNS Event Subscription ARN*.
 * Create [Lambda IAM Role](https://console.aws.amazon.com/iam/). For the inline policy, use `opsworks-lambda-role.json`. select *AWS Lambda* as the type.
 * Create the [Lambda Function](https://console.aws.amazon.com/lambda/) using the Hello World Node.js sample code.
 * Go the **Event Source** tab in Lambda and link it to the SNS Topic you previosuly created. Keep the **Enabled Later** button selected.
