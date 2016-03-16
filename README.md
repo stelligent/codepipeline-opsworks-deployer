@@ -22,22 +22,22 @@ Here's a general diagram of how it works:
 
 **NOTE: These steps will be automated later. This README is currently under construction.**
 
-* Launch an EC2 t2.nano instance using Amazon Linux and SSH into it.
-* Install Git: `sudo yum -y install git*`
+* Launch an EC2 instance using Amazon Linux or run from your local environment. The remainder of the instructions assume EC2, so adjust the commands as necessary.
+* After SSHing into the EC2 instance, install Git: `sudo yum -y install git*`
 * Clone this Git repo: `git clone https://github.com/stelligent/codepipeline-opsworks-deployer`
 * Create an OpsWorks Artifact Bucket in [S3](https://console.aws.amazon.com/s3/) and upload the zip file from https://github.com/awslabs/aws-codepipeline-s3-aws-codedeploy_linux/tree/master/dist. Be sure to enable versioning on the bucket for CodePipeline by right clicking on Properties for the Bucket, select Versioning and click the Enable Versioning button.
-* Manually create an OpsWorks stack using a static S3 website w/ Chef 11.10. Configure your OpsWorks stack with CodePipeline/CodeDeploy zip file deployed (from the above step)
+* Manually create an [OpsWorks](https://console.aws.amazon.com/opsworks/) stack using a static S3 website w/ Chef 11.10. Configure your OpsWorks stack with CodePipeline/CodeDeploy zip file deployed (from the above step)
 * Create an [SNS](https://console.aws.amazon.com/sns/) Topic. Edit Topic Delivery Policy|Advanced View, use the source from: `opsworks-sns-topic-delivery-policy.json` (Update the variables)
-* From the SNS Actions button, select Edit Topic Policy with `opsworks-sns-topic-policy.json` (Update the variables)
-* Create Lambda IAM Role. For the inline policy, use `opsworks-lambda-role.json`. select AWS Lambda as the type.
-* Create the Lambda Function using the Hello World Node.js sample code.
-* Link SNS Event Source (go to the tab) to the Lambda function (keep as Enabled Later)
-* Subscribe SNS to events for CodePipeline bucket in S3 by right clicking on the bucket, select Properties, then Events. Include Put, Post, Copy and CompleteMultiPartUpload. Select the name of the SNS Topic you previously created.
-* Manually create a pipeline by using the steps/video shown at: [Create a Pipeline using the AWS CodePipeline Console](http://www.stelligent.com/cloud/create-a-pipeline-using-the-aws-codepipeline-console/)
+* From the SNS Actions button, select **Edit Topic Policy** with `opsworks-sns-topic-policy.json` (Update the variables)
+* Create [Lambda IAM Role](https://console.aws.amazon.com/iam/). For the inline policy, use `opsworks-lambda-role.json`. select *AWS Lambda* as the type.
+* Create the [Lambda Function](https://console.aws.amazon.com/lambda/) using the Hello World Node.js sample code.
+* Go the **Event Source** tab in Lambda and link it to the SNS Topic you previosuly created. Keep the **Enabled Later** button selected.
+* Subscribe SNS to events for CodePipeline bucket in S3 by right clicking on the bucket, select **Properties**, then **Events**. Include `Put`, `Post`, `Copy` and `CompleteMultiPartUpload`. Select the name of the SNS Topic you previously created.
+* Manually create a pipeline in [CodePipeline](https://console.aws.amazon.com/codepipeline/)by using the steps/video shown at: [Create a Pipeline using the AWS CodePipeline Console](http://www.stelligent.com/cloud/create-a-pipeline-using-the-aws-codepipeline-console/)
 * Create and save a script that defines a custom CodePipeline action (use codepipeline-customer-action-input.json): `sudo vim codepipeline-customer-action-input.json`
 * Apply the custom action: `aws codepipeline create-custom-action-type --cli-input-json file://codepipeline-customer-action-input.json`
-* Add a new stage called OpsWorks (you can name it anything you’d like) and action in between the Source and Beta stages in CodePipeline. When configuring the action, use the Deploy category and the name of the custom action you just created.
-* From your EC2 instance (or local dev environment), change the directory: `cd ~/codepipeline-opsworks-deployer`
+* In [CodePipeline](https://console.aws.amazon.com/codepipeline/), add a new stage called `OpsWorks` (you can name it anything you’d like) and action in between the Source and Beta stages. When configuring the action, use the **Deploy** category and select the name of the custom action you just created fro the Deployment Provider drop down. Enter the three values for the parameters of the action. 
+* From your EC2 instance, change the directory: `cd ~/codepipeline-opsworks-deployer`
 * Install npm: `sudo npm install`
 * Install the Grunt CLI: `sudo npm install -g grunt-cli`
 * Update your local version of [lib/handle_job.js](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/lib/handle_job.js) with the name of the Deploy Provider (i.e. the name of the custom action you created)
