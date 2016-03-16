@@ -36,9 +36,9 @@ You'll want to keep note of the following values:
 * Launch an EC2 instance using Amazon Linux or run from your local environment. The remainder of the instructions assume EC2, so adjust the commands as necessary.
 * After SSHing into the EC2 instance, install Git: `sudo yum -y install git*`
 * Clone this Git repo: `git clone https://github.com/stelligent/codepipeline-opsworks-deployer`
-* Create an OpsWorks Artifact Bucket in [S3](https://console.aws.amazon.com/s3/) and upload the zip file from https://github.com/awslabs/aws-codepipeline-s3-aws-codedeploy_linux/tree/master/dist. Be sure to enable versioning on the bucket for CodePipeline by right clicking on Properties for the Bucket, select Versioning and click the Enable Versioning button.
-* Manually create an [OpsWorks](https://console.aws.amazon.com/opsworks/) stack using a static S3 website w/ Chef 11.10. Configure your OpsWorks stack with CodePipeline/CodeDeploy zip file deployed (from the above step)
-* Create an [SNS](https://console.aws.amazon.com/sns/) Topic. Edit Topic Delivery Policy|Advanced View, use the source from: `opsworks-sns-topic-delivery-policy.json` (Update the variables)
+* Create an OpsWorks Artifact Bucket in [S3](https://console.aws.amazon.com/s3/) and upload the zip file from https://github.com/awslabs/aws-codepipeline-s3-aws-codedeploy_linux/tree/master/dist. Be sure to enable versioning on the bucket for CodePipeline by right clicking on **Properties** for the bucket, select **Versioning** and click the **Enable Versioning** button.
+* Manually create an [OpsWorks](https://console.aws.amazon.com/opsworks/) stack using a static S3 website w/ Chef 11.10. Configure your OpsWorks stack with CodePipeline/CodeDeploy zip file deployed (from the above step). Once it's successfully deployed, make note of the *OpsWorks Stack ID* and *OpsWorks App ID*.
+* Create an [SNS](https://console.aws.amazon.com/sns/) Topic. Edit Topic Delivery Policy|Advanced View, use the source from: `opsworks-sns-topic-delivery-policy.json` (Update the variables). Make note of the *SNS ARN* and the *SNS Event Subscription ARN*.
 * From the SNS Actions button, select **Edit Topic Policy** with `opsworks-sns-topic-policy.json` (Update the variables)
 * Create [Lambda IAM Role](https://console.aws.amazon.com/iam/). For the inline policy, use `opsworks-lambda-role.json`. select *AWS Lambda* as the type.
 * Create the [Lambda Function](https://console.aws.amazon.com/lambda/) using the Hello World Node.js sample code.
