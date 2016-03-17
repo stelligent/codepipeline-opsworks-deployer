@@ -16,7 +16,7 @@ grunt.initConfig({
     },
     lambda_deploy: {
         default: {
-            arn: 'arn:aws:lambda:us-east-1:608866947342:function:codedeploy-opsworks-runner'
+            arn: 'LAMBDAARN'
         }
     },
     lambda_package: {
