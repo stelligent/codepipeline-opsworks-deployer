@@ -23,14 +23,14 @@ Here's a general diagram of how it works:
 **NOTE: These steps will be automated later. This README is currently under construction.**
 
 You'll want to keep note of the following values:
-1. S3 bucket and key for the OpsWorks artifact zip file
-1. OpsWorks Stack ID
-1. OpsWorks Stack ARN 
-1. OpsWorks App ID 
-1. SNS ARN 
-1. SNS Event Subscription ARN 
-1. Deploy Provider Name - the custom action name that you create for CodePipeline 
-1. Lambda Function ARN 
+* S3 bucket and key for the OpsWorks artifact zip file
+* OpsWorks Stack ID
+* OpsWorks Stack ARN 
+* OpsWorks App ID 
+* SNS ARN 
+* SNS Event Subscription ARN 
+* Deploy Provider Name - the custom action name that you create for CodePipeline 
+* Lambda Function ARN 
 
 ### Steps
 
