@@ -57,7 +57,7 @@ You'll want to keep note of the following values:
 * Install the Grunt CLI: `sudo npm install -g grunt-cli`
 * Update the `YOURPROVIDERNAME` value in your local version of [lib/handle_job.js](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/lib/handle_job.js) with the name of the Deploy Provider (i.e. the name of the custom action you created). Save this file.
 * Update the `SNSEVENTDESCRIPTIONARN` and `SNSTOPICARN` with the appropriate values in your local versions of  [event_handle.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_handle.json) and [event_monitor.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_monitor.json). Save these files.  
-* Open the Grunt build file: `sudo vim Gruntfile.js` and update `arn` for the Lambda function in `lambda_deploy` section and save the file.
+* Open the Grunt build file: `sudo vim Gruntfile.js` and update `LAMBDAARN` value to the ARN matching the the Lambda function you created and save the file.
 * Upload the Lambda function using Grunt by calling `grunt deploy` from the command line on the EC2 instance.
 * From the **Event Sources** tab of the [Lambda](https://console.aws.amazon.com/lambda/) function, update the SNS source state to Enabled.
 * Click **Release change** button on [CodePipeline](https://console.aws.amazon.com/codepipeline/)
