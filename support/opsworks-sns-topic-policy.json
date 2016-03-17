@@ -1,0 +1,44 @@
+{
+  "Version": "2008-10-17",
+  "Id": "__default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "_s3",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "SNS:Publish",
+      "Resource": "SNSTOPICARN",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceArn": "arn:aws:s3:::OPSWORKSARTIFACTBUCKET"
+        }
+      }
+    },
+    {
+      "Sid": "__default_statement_ID",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "SNS:Subscribe",
+        "SNS:ListSubscriptionsByTopic",
+        "SNS:DeleteTopic",
+        "SNS:GetTopicAttributes",
+        "SNS:Publish",
+        "SNS:RemovePermission",
+        "SNS:AddPermission",
+        "SNS:Receive",
+        "SNS:SetTopicAttributes"
+      ],
+      "Resource": "SNSTOPICARN",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceOwner": "AWSACCOUNTID"
+        }
+      }
+    }
+  ]
+}

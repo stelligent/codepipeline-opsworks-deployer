@@ -1,0 +1,35 @@
+{
+    "category": "Deploy",
+    "provider": "YOURPROVIDERNAME",
+    "version": "1",
+    "settings": {
+    },
+    "configurationProperties": [
+        {
+            "name": "Deploy-Bucket",
+            "required": true,
+            "key": false,
+            "secret": false
+        },
+        {
+            "name": "OpsWorks-Stack-ID",
+            "required": true,
+            "key": false,
+            "secret": false
+        },
+        {
+            "name": "OpsWorks-App-ID",
+            "required": true,
+            "key": true,
+            "secret": false
+        }
+    ],
+    "inputArtifactDetails": {
+        "minimumCount": 1,
+        "maximumCount": 1
+    },
+    "outputArtifactDetails": {
+        "minimumCount": 0,
+        "maximumCount": 0
+    }
+}
