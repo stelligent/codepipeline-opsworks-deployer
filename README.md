@@ -59,10 +59,10 @@ You'll want to keep note of the following values:
 * Update the `SNSEVENTDESCRIPTIONARN` and `SNSTOPICARN` with the appropriate values in your local versions of  [event_handle.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_handle.json) and [event_monitor.json](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_monitor.json). Save these files.  
 * Open the Grunt build file: `sudo vim Gruntfile.js` and update `LAMBDAARN` value to the ARN matching the the Lambda function you created and save the file.
 * Upload the Lambda function using Grunt by calling `grunt deploy` from the command line on the EC2 instance.
-* From the **Event Sources** tab of the [Lambda](https://console.aws.amazon.com/lambda/) function, click the `Disabled' state in the SNS source entry and click the **Enable** button.
+* From the **Event Sources** tab of the [Lambda](https://console.aws.amazon.com/lambda/) function, click the `Disabled` state in the SNS source entry and click the **Enable** button.
 * Click **Release change** button on [CodePipeline](https://console.aws.amazon.com/codepipeline/)
-* Copy the generated file from your EC2 instance to S3 bucket. Replace `generated-file-name.zip` and `my-bucket` with the actual names.
-`aws s3 cp /home/ec2-user/codepipeline-opsworks-deployer/dist/generated-file-name.zip s3://my-bucket/ --storage-class REDUCED_REDUNDANCY`
+* Copy the generated file from your EC2 instance to S3 bucket. Replace `GENERATED-FILE-NAME.zip` and `MY-BUCKET` with the actual names.
+`aws s3 cp /home/ec2-user/codepipeline-opsworks-deployer/dist/GENERATED-FILE-NAME.zip s3://MY-BUCKET/ --storage-class REDUCED_REDUNDANCY`
 
 ## How do I develop on this?
 
