@@ -34,8 +34,8 @@ You'll want to keep note of the following values:
 
 ### Steps
 
-1. Launch an EC2 instance using Amazon Linux or run from your local environment. The remainder of the instructions assume EC2, so adjust the commands as necessary.
-1. Configure yout AWS environment by typing `aws configure` and entering your credentials, region and output type.
+1. Launch an [EC2 instance using Amazon Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) or run from your local environment. The remainder of the instructions assume EC2, so adjust the commands as necessary if you're using a different client. 
+1. Configure your AWS environment by typing `aws configure` and entering your credentials, region and output type.
 1. After SSHing into the EC2 instance, install Git: `sudo yum -y install git*`
 1. Install node: `sudo yum install -y nodejs npm --enablerepo=epel`
 1. Clone this Git repo: `git clone https://github.com/stelligent/codepipeline-opsworks-deployer`
