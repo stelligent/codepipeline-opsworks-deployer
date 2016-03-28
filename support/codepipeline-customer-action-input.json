@@ -1,6 +1,6 @@
 {
     "category": "Deploy",
-    "provider": "YOURPROVIDERNAME",
+    "provider": "DEPLOYPROVIDER",
     "version": "1",
     "settings": {
     },
