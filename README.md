@@ -55,7 +55,7 @@ You'll want to keep note of the following values:
 1. From your EC2 instance, change the directory: `cd ~/codepipeline-opsworks-deployer`
 1. Install npm: `sudo npm install`
 1. Install the Grunt CLI: `sudo npm install -g grunt-cli`
-1. Update the `YOURPROVIDERNAME` value in your local version of [lib/handle_job.js](https://github.com/stelligent/codepipeline-opsworks-deployer/blob/master/lib/handle_job.js) with the name of the Deploy Provider (i.e. the name of the custom action you created). Save this file.
+1. Update the `YOURPROVIDERNAME` value in your local version of [lib/handle_job.js](https://raw.githubusercontent.com/stelligent/codepipeline-opsworks-deployer/master/lib/handle_job.js) with the name of the Deploy Provider (i.e. the name of the custom action you created). Save this file.
 1. Update the `SNSEVENTSUBSCRIPTIONARN` and `SNSTOPICARN` with the appropriate values in your local versions of  [event_handle.json](https://raw.githubusercontent.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_handle.json) and [event_monitor.json](https://raw.githubusercontent.com/stelligent/codepipeline-opsworks-deployer/blob/master/event_monitor.json). Save these files.  
 1. Open the [Grunt build file](https://raw.githubusercontent.com/stelligent/codepipeline-opsworks-deployer/master/Gruntfile.js): `sudo vim Gruntfile.js` and update `LAMBDAARN` value to the ARN matching the the Lambda function you created and save the file.
 1. Upload the Lambda function using Grunt by calling `grunt deploy` from the command line on the EC2 instance.
